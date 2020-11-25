@@ -1,0 +1,20 @@
+version: '3.5'
+
+services:
+  workspace:
+    build:
+      context: ./docker/
+      dockerfile: Dockerfile
+      args:
+        - WORKDIR=/var/www/html
+    volumes:
+      - ./:/var/www/html
+    working_dir: /var/www/html
+    cap_add:
+      - ALL
+    expose:
+      - "9000"
+      - "9001"
+    ports:
+      - "8090:80"
+    tty: true
